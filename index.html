@@ -1,309 +1,168 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>eval2</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-             body { font-family: Arial, sans-serif; padding: 20px; background-color: white; width:99%; max-width:600px; text-align:center; }
-        label { display: block; margin: 10px 0 5px; }
-        select, input { margin-bottom: 10px; }
-        button { margin-top: 10px; }
-        .certificate-container {
-            max-width: 700px;
-            margin: 50px auto;
-            padding: 30px;
-            border: 2px solid #007bff;
-            border-radius: 10px;
-            background-color: #fff;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-        }
-        .certificate-header {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-        .certificate-header h1 {
-            font-size: 1.3rem;
-            font-weight:bold;
-            color: #007bff;
-        }
-        .certificate-body {
-            text-align: center;
-        }
-        .certificate-body .price {
-            font-size: 1.3rem;
-            color: #28a745;
-            font-weight: bold;
-        }
-        .certificate-body .storage {
-            font-size: 0.7rem;
-            color: #6c757d;
-            margin-top: 10px;
-        }
-        .condition-bar {
-            margin-top: 20px;
-            text-align: center;
-            padding:10px;
-            border-radius:10px;
-            background-color: #55555531;
-        }
-        .condition-bar .progress {
-            height: 30px;
-            margin-bottom: 10px;
-        }
-        .condition-bar .progress-bar {
-            font-size: 0.8rem;
-            line-height: 30px;
-            color: #fff;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Transaktion</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background-color: #f3f3f3;
+      color: #000;
+    }
+    .container {
+     width: 100%;
+      margin: auto;
+      padding: 0px;
+    }
+    .header, .footer {
+      text-align: center;
+      color: #555;
+      font-size: 21px;
+      background-color:#ffffff;
+      padding:20px;
+    }
+    .transaction-status {
+      text-align: center;
+      margin: 10px 0px;
+      background-color:#ffffff;
+      padding:20px;
+    }
+    .checkmark {
+      background-color: #e6ebd5;
+      border-radius: 50%;
+      width: 85px;
+      height:85px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: auto;
+      font-size: 32px;
+      color: #000000;
+    }
+    .status-text {
+      margin-top: 25px;
+      font-size: 18px;
+      font-weight: 100;
+    }
+    .date-time {
+         margin-top: 12px;
+      font-size: 15px;
+      color: #666;
+    }
+    .amount {
+      text-align: center;
+      font-size: 19px;
+      margin: 30px 0 10px 0;
+        color: #666;
+    }
+    #betrag {
+        font-size:50px;
+                color: #000000;
+    }
+    #grey {
+        font-size:15px;
+          color: #666; 
+          text-align: center;
+          margin-top:10px;   
+    }
+    .konto {
+      text-align: center;
+      font-size: 18px;
+      color: #000000;
+    }
+    .person {
+      text-align: center;
+      margin-top: 40px;
+    }
+    .person-circle {
+      width: 85px;
+      height: 85px;
+      border-radius: 50%;
+      background-color: #f1f1f1;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: ;
+      font-size: 20px;
+      margin-bottom: 5px;
+    }
+    .person-name {
+      font-weight: ;
+    }
+    .phone {
+      color: #555;
+      font-size: 14px;
+    }
+    .footer-note {
      
-        .certificate-footer {
-            text-align: center;
-            margin-top: 20px;
-            font-size: 0.7rem;
-            color: #6c757d;
-        }
-        #certificate {
-            background-image: url(backg.png);
-            background-size: cover;
-            background-position: center;
-        }
-        
-        select, button {
-            width:99%;
-        }
-    </style>
+      font-size: 18px;
+      color: #116f86;
+      text-align: center;
+      cursor: pointer;
+    }
+    .message-bubble {
+      margin-right:20px;
+      margin-left:60%;
+      margin-top:20px;
+      max-width: 30%;
+      background-color: #e6ebf5;
+      padding: 18px 14px;
+      border-radius: 20px;
+      color: #32384e;
+      font-size: 18px;
+    }
+    .box {
+        background-color: white;
+    }
+    .abc {
+   background-color:#ffffff;
+      padding:20px;
+      margin:10px 0px;
+      margin-left:auto;
+      margin-right:auto;
+      text-align:center;
+    }
+
+    hr {
+        border: none; 
+        height: 2px; 
+        background-color:#f0f0f0;
+    }
+  </style>
 </head>
 <body>
-    <img src="opvc.png" style="width:80%;">
-    <hr>
-    <div class="container">
-      
-    <form id="iphoneForm">
-        <label for="model">Modell:</label>
-        <select class="btn btn-secondary" id="model" required>
-            <option value="">Bitte wählen</option>
-            <!-- iPhone Modelle werden hier durch JavaScript hinzugefügt -->
-        </select><br>
+  <div class="container">
 
-        <label for="storage">Speicherkapazität (GB):</label>
-        <select class="btn btn-secondary" id="storage" required>
-             <option value="16">16</option>
-            <option value="32">32</option>
-            <option value="64">64</option>
-            <option value="128">128</option>
-            <option value="256">256</option>
-            <option value="512">512</option>
-        </select><br>
+    <div class="header">Transaktion</div>
 
-        <label for="condition">Zustand:</label>
-        <select class="btn btn-secondary" id="condition" required>
-            <option value="very_good">Sehr gut</option>
-            <option value="good">Gut</option>
-            <option value="ok">Ok</option>
-        </select><br>
-<br><hr>
-        <button class="btn btn-success" type="button" id="calculateButton">Berechnen</button>
-    </form>
-
-</div>
-<br><hr><br>
-    <div id="certificate" class="certificate-container" style="display: none;">
-        <div class="certificate-header">
-            <h1>Marktpreis Bewertung</h1>
-            <p class="lead">Aktueller Marktpreis für das iPhone</p>
-        </div>
-        <div class="certificate-body">
-            <h2 id="certModel"></h2>
-            <p class="storage" id="certStorage"></p>
-            <p class="price" id="certPrice"></p>
-            <p class="description" id="certDescription"></p>
-            <div class="condition-bar">
-                <p class="lead">Allgemeiner Optischer Zustand:</p>
-                <div class="progress">
-                    <div class="progress-bar ok" id="progress"></div>
-                </div>
-              
-            </div>
-        </div>
-        <div class="certificate-footer">
-            Berechnet am: 29. Juli 2024 / 
-            Gültig bis: 31. August 2024
-        </div>
+    <div class="transaction-status">
+      <div class="checkmark">✓</div>
+      <div class="status-text">Die Zahlung war erfolgreich</div>
+      <div class="date-time">08.07.2025 – 14:05</div>
     </div>
 
-    <p id="result"></p>
-    <p>Der aktuelle Marktwert des iPhones basiert auf dem ursprünglichen Kaufpreis, dem Modellfaktor, der Speicherkapazität und dem Zustand des Geräts. Die Bewertung berücksichtigt die allgemeine Abwertung über die Zeit, wobei Geräte in besserem Zustand und mit höherem Speicher tendenziell wertvoller sind. Die Berechnung zeigt den geschätzten Wert zum aktuellen Zeitpunkt und die Gültigkeit bis zum Ende des laufenden Monats.</p>
+    <div class="abc">
+    <div class="amount">CHF <span id="betrag">560.00</span></div>
+    <div class="konto">UBS Privatkonto *9420G</div>
+    <div id="grey">920G</div>
+<br>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const iphoneModels = {
-                "iPhone 4": {releaseDate: '2010-06-24', price: 629},
-                "iPhone 4s": {releaseDate: '2011-10-14', price: 649},
-                "iPhone 5": {releaseDate: '2012-09-21', price: 679},
-                "iPhone 5c": {releaseDate: '2013-09-20', price: 599},
-                "iPhone 5s": {releaseDate: '2013-09-20', price: 699},
-                "iPhone 6": {releaseDate: '2014-09-19', price: 699},
-                "iPhone 6 Plus": {releaseDate: '2014-09-19', price: 799},
-                "iPhone 6s": {releaseDate: '2015-09-25', price: 749},
-                "iPhone 6s Plus": {releaseDate: '2015-09-25', price: 849},
-                "iPhone SE (1st Gen)": {releaseDate: '2016-03-31', price: 489},
-                "iPhone 7": {releaseDate: '2016-09-16', price: 759},
-                "iPhone 7 Plus": {releaseDate: '2016-09-16', price: 909},
-                "iPhone 8": {releaseDate: '2017-09-22', price: 799},
-                "iPhone 8 Plus": {releaseDate: '2017-09-22', price: 909},
-                "iPhone X": {releaseDate: '2017-11-03', price: 1149},
-                "iPhone XR": {releaseDate: '2018-10-26', price: 849},
-                "iPhone XS": {releaseDate: '2018-09-21', price: 1159},
-                "iPhone XS Max": {releaseDate: '2018-09-21', price: 1259},
-                "iPhone 11": {releaseDate: '2019-09-20', price: 699},
-                "iPhone 11 Pro": {releaseDate: '2019-09-20', price: 1149},
-                "iPhone 11 Pro Max": {releaseDate: '2019-09-20', price: 1249},
-                "iPhone SE (2nd Gen)": {releaseDate: '2020-04-24', price: 479},
-                "iPhone 12": {releaseDate: '2020-10-23', price: 799},
-                "iPhone 12 Mini": {releaseDate: '2020-11-13', price: 699},
-                "iPhone 12 Pro": {releaseDate: '2020-10-23', price: 999},
-                "iPhone 12 Pro Max": {releaseDate: '2020-11-13', price: 1099},
-                "iPhone 13": {releaseDate: '2021-09-24', price: 799},
-                "iPhone 13 Mini": {releaseDate: '2021-09-24', price: 699},
-                "iPhone 13 Pro": {releaseDate: '2021-09-24', price: 999},
-                "iPhone 13 Pro Max": {releaseDate: '2021-09-24', price: 1099},
-                "iPhone 14": {releaseDate: '2022-09-16', price: 799},
-                "iPhone 14 Plus": {releaseDate: '2022-10-07', price: 899},
-                "iPhone 14 Pro": {releaseDate: '2022-09-16', price: 999},
-                "iPhone 14 Pro Max": {releaseDate: '2022-09-16', price: 1099},
-                "iPhone 15": {releaseDate: '2023-09-22', price: 799},
-                "iPhone 15 Plus": {releaseDate: '2023-09-22', price: 899},
-                "iPhone 15 Pro": {releaseDate: '2023-09-22', price: 999},
-                "iPhone 15 Pro Max": {releaseDate: '2023-09-22', price: 1199}
-            };
+   <hr>
+   <br><br>
 
-            function calculateCurrentValue(originalPrice, releaseDate, modelFactor, storageFactor, conditionFactor) {
-                const releaseDateObj = new Date(releaseDate);
-                const currentDate = new Date();
-                const monthsElapsed = (currentDate.getFullYear() - releaseDateObj.getFullYear()) * 12 + (currentDate.getMonth() - releaseDateObj.getMonth());
+      <div class="person-circle">T</div><br><br>
+      <div class="person-name">Thermomix Marketplace</div><br>
+      <div class="phone">+41 77 807 56 70</div>
 
-                // Basiswertberechnung
-                const totalFactor = modelFactor + storageFactor + conditionFactor;
-                let currentValue = originalPrice * Math.pow((1 - totalFactor), monthsElapsed);
+</div>
+<div class="abc">
+    <div class="footer-note">Probleme mit dieser Zahlung</div>
+</div>
 
-                // Altersabschlag für Geräte älter als 6 Jahre
-                const sixYearsInMonths = 72; // 6 Jahre in Monaten
-                if (monthsElapsed > sixYearsInMonths) {
-                    currentValue *= 0.8; // 20% Abzug
-                }
+    <div class="message-bubble">Thermomix TM7</div>
 
-                return currentValue.toFixed(2);
-            }
-
-            function getModelFactors(model) {
-                const factors = {
-                    "iPhone SE (2020)": 0.012,
-                    "iPhone 11": 0.01,
-                    "iPhone 12": 0.012,
-                    "iPhone 12 Mini": 0.011,
-                    "iPhone 12 Pro": 0.014,
-                    "iPhone 12 Pro Max": 0.015,
-                    "iPhone 13": 0.01,
-                    "iPhone 13 Mini": 0.009,
-                    "iPhone 13 Pro": 0.013,
-                    "iPhone 13 Pro Max": 0.014,
-                    "iPhone 14": 0.011,
-                    "iPhone 14 Plus": 0.011,
-                    "iPhone 14 Pro": 0.012,
-                    "iPhone 14 Pro Max": 0.013,
-                    "iPhone 15": 0.01,
-                    "iPhone 15 Plus": 0.01,
-                    "iPhone 15 Pro": 0.012,
-                    "iPhone 15 Pro Max": 0.013
-                };
-                return factors[model] || 0.01;
-            }
-
-            function getStorageFactor(storage) {
-                const factors = {
-                    "16": 0.007,
-                    "32": 0.006,
-                    "64": 0.005,
-                    "128": 0.004,
-                    "256": 0.003,
-                    "512": 0.002
-                };
-                return factors[storage] || 0.005;
-            }
-
-            function getConditionFactor(condition) {
-                const factors = {
-                    "very_good": 0.003,
-                    "good": 0.005,
-                    "ok": 0.007
-                };
-                return factors[condition] || 0.005;
-            }
-
-            function updateCertificate(model, storage, price, condition) {
-                document.getElementById('certModel').textContent = model + ' - ' +storage+'gb';
-                document.getElementById('certStorage').textContent = `Speicherkapazität: ${storage} GB`;
-                document.getElementById('certPrice').textContent = `Aktueller Marktwert: $ ${price}`;
-                document.getElementById('condition').value;
-                
-                // Update the condition bar
-                const conditionBars = {
-                    "ok": 33,
-                    "good": 66,
-                    "very_good": 100
-                };
-
-            
-if (condition === "ok") {
-    document.getElementById('progress').style.width = conditionBars["ok"] + "%";
-    document.getElementById('progress').style.backgroundColor = '#ffc107';
-    document.getElementById('progress').innerHTML = 'Ok';
-} else if (condition === "good") {
-    document.getElementById('progress').style.width = conditionBars["good"] + "%";
-    document.getElementById('progress').style.backgroundColor = '#17a2b8';
-    document.getElementById('progress').innerHTML = 'gut';
-} else if (condition === "very_good") {
-    document.getElementById('progress').style.width = conditionBars["very_good"] + "%";
-    document.getElementById('progress').style.backgroundColor = '#28a745';
-    document.getElementById('progress').innerHTML = 'Sehr gut (Wie Neu)';
-}
-               
-            }
-
-            const modelSelect = document.getElementById('model');
-            for (const [model, info] of Object.entries(iphoneModels)) {
-                const option = document.createElement('option');
-                option.value = model;
-                option.textContent = model;
-                modelSelect.appendChild(option);
-            }
-
-            document.getElementById('calculateButton').addEventListener('click', function() {
-                const model = document.getElementById('model').value;
-                const storage = document.getElementById('storage').value;
-                const condition = document.getElementById('condition').value;
-
-                if (model && storage && condition) {
-                    const { releaseDate, price } = iphoneModels[model];
-                    const modelFactor = getModelFactors(model);
-                    const storageFactor = getStorageFactor(storage);
-                    const conditionFactor = getConditionFactor(condition);
-
-                    const currentValue = calculateCurrentValue(price, releaseDate, modelFactor, storageFactor, conditionFactor);
-                    document.getElementById('result').innerText = `Aktueller Wert: ${currentValue} $`;
-                    
-                    // Show the certificate and update it
-                    updateCertificate(model, storage, currentValue, condition);
-                    document.getElementById('certificate').style.display = 'block';
-                } else {
-                    document.getElementById('result').innerText = 'Bitte fülle alle Felder aus.';
-                    document.getElementById('certificate').style.display = 'none';
-                }
-            });
-        });
-    </script>
+  </div>
 </body>
 </html>
